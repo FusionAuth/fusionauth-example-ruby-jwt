@@ -10,7 +10,7 @@ payload = { "iss": "fusionauth.io",
             "roles": ["RETRIEVE_TODOS"]
 }
 
-rsa_private = OpenSSL::PKey::RSA.generate 2048
+rsa_private = OpenSSL::PKey::RSA.generate 2048 # but really you're going to get this from somewhere else
 rsa_public = rsa_private.public_key
 
 token = JWT.encode payload, rsa_private, 'RS256'
