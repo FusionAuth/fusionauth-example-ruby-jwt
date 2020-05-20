@@ -1,5 +1,6 @@
 require 'jwt'
 
+# user API
 hmac_secret = 'helloKCRuby!##'
 
 exp = Time.now.to_i + (5*60)
@@ -15,6 +16,8 @@ payload = { "iss": "fusionauth.io",
 token = JWT.encode payload, hmac_secret, 'HS256'
 
 puts token
+
+# TODO API
 
 decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
 
