@@ -1,7 +1,7 @@
 require 'jwt'
 
 # user API
-hmac_secret = 'helloKCRuby!##'
+hmac_secret = 'helloRuby!##'
 
 exp = Time.now.to_i + (5*60)
 
@@ -13,7 +13,7 @@ payload = { "iss": "fusionauth.io",
             "roles": ["RETRIEVE_TODOS"]
 }
 
-token = JWT.encode payload, hmac_secret, 'HS256'
+token = JWT.encode payload, hmac_secret, 'HS256', {"typ": "JWT"}
 
 puts token
 
