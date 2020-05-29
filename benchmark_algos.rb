@@ -52,3 +52,26 @@ puts Benchmark.measure {
   end
 }
 
+
+
+ecdsa_key = OpenSSL::PKey::EC.new 'prime256v1'
+ecdsa_key.generate_key
+ecdsa_public = OpenSSL::PKey::EC.new ecdsa_key
+ecdsa_public.private_key = nil
+
+puts "ecc encode"
+puts Benchmark.measure {
+  repeat_x_times.times do
+    JWT.encode payload, ecdsa_key, 'ES256', {"typ": "JWT"}
+  end
+}
+
+token = JWT.encode payload, ecdsa_key, 'ES256', {"typ": "JWT"}
+
+puts "ecc decode"
+puts Benchmark.measure {
+  repeat_x_times.times do
+    JWT.decode token, ecdsa_public, true, { algorithm: 'ES256' }
+  end
+}
+
