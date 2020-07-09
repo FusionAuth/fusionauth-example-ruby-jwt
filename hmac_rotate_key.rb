@@ -20,5 +20,5 @@ decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
 
 puts decoded_token
 
-new_hmac_secret = 'byeKCRuby!##'
+new_hmac_secret = 'byeRuby!##'
 decoded_token = JWT.decode token, new_hmac_secret, true, { algorithm: 'HS256' }
