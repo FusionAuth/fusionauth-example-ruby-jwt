@@ -1,7 +1,7 @@
 require 'jwt'
 
 # user API
-hmac_secret = 'helloKCRuby!##'
+hmac_secret = 'helloRuby!##'
 
 exp = Time.now.to_i + (5*60)
 
