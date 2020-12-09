@@ -1,6 +1,6 @@
 require 'jwt'
 
-# user API
+# fake user API
 hmac_secret = 'helloRuby!##'
 
 exp = Time.now.to_i + (5*60)
