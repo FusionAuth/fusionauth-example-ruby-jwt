@@ -5,7 +5,7 @@ hmac_secret = 'helloRuby!##'
 
 exp = Time.now.to_i + (5*60)
 
-payload = { "iss": "hacked.fusionauth.io", 
+payload = { "iss": "fusionauth.io", 
             "exp": exp, 
             "aud": "238d4793-70de-4183-9707-48ed8ecd19d9",
             "sub": "19016b73-3ffa-4b26-80d8-aa9287738677",
@@ -22,5 +22,11 @@ puts token
 expected_iss = "fusionauth.io"
 
 decoded_token = JWT.decode token, hmac_secret, true, {  verify_iss: true, iss: expected_iss, algorithm: 'HS256' }
+
+# business validation
+unless decoded_token[0]['roles'].include?('ADMIN')
+  throw 'Correct role missing'
+end
+
 
 puts decoded_token
